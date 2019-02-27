@@ -91,7 +91,7 @@ if __name__ == "__main__":
 
     # Print config
     namespace = exclude_dir.name.lower()
-    exclude_files = glob_h_in_folder(exclude_dir)
+    exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     print("[exclude_files]")
     pprint(exclude_files)
     print("[object_names]")
