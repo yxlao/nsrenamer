@@ -102,12 +102,14 @@ map_object_name_to_ignored_files = {
         "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygon.h",
         "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygonVolume.cpp",
         "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygonVolume.h",
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Visualizer/VisualizerWithEditing.cpp",
     },
     "CropTriangleMesh": {
         "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygon.cpp",
         "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygon.h",
         "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygonVolume.cpp",
         "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygonVolume.h",
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Visualizer/VisualizerWithEditing.cpp",
     },
 }
 
@@ -117,7 +119,7 @@ def process_line(line, object_names, namespace, file_path=None):
     for object_name in object_names:
         if (
             object_name in map_object_name_to_ignored_files
-            and file_path in map_object_name_to_ignored_files[object_name]
+            and str(file_path) in map_object_name_to_ignored_files[object_name]
         ):
             new_line = new_line
         else:
