@@ -34,7 +34,8 @@ def process_file(file_path, object_names, namespace):
         if processed_line != line:
             changed = True
             # print(f"[Changed] {file_path}\n{line.strip()}\n{processed_line.strip()}\n")
-    print(f"[Changed] {file_path}")
+    if changed:
+        print(f"[Changed] {file_path}")
 
     # Write
     with open(file_path, "w") as f:
@@ -129,78 +130,87 @@ if __name__ == "__main__":
     #     "SetGeometryColorAverage",
     # ]
 
-    # Config: geometry
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Geometry")
+    # # Config: geometry
+    # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Geometry")
+    # object_names = [
+    #     "Geometry",
+    #     "Geometry2D",
+    #     "Geometry3D",
+    #     # Image
+    #     "Image",
+    #     "CreateDepthToCameraDistanceMultiplierFloatImage",
+    #     "PointerAt",
+    #     "ConvertDepthToFloatImage",
+    #     "FlipImage",
+    #     "FilterImage",
+    #     "FilterHorizontalImage",
+    #     "DownsampleImage",
+    #     "DilateImage",
+    #     "LinearTransformImage",
+    #     "ClipIntensityImage",
+    #     "CreateImageFromFloatImage",
+    #     "ImagePyramid",
+    #     "FilterImagePyramid",
+    #     "CreateImagePyramid",
+    #     "CreateDepthBoundaryMask",
+    #     # KDTree
+    #     "KDTreeFlann",
+    #     "KDTreeSearchParam",
+    #     "KDTreeSearchParamKNN",
+    #     "KDTreeSearchParamRadius",
+    #     "KDTreeSearchParamHybrid",
+    #     # LineSet
+    #     "LineSet",
+    #     # PointCloud
+    #     "PointCloud",
+    #     "CreatePointCloudFromDepthImage",
+    #     "CreatePointCloudFromRGBDImage",
+    #     "SelectDownSample",
+    #     "VoxelDownSample",
+    #     "VoxelDownSampleAndTrace",
+    #     "UniformDownSample",
+    #     "CropPointCloud",
+    #     "RemoveRadiusOutliers",
+    #     "RemoveStatisticalOutliers",
+    #     "EstimateNormals",
+    #     "OrientNormalsToAlignWithDirection",
+    #     "OrientNormalsTowardsCameraLocation",
+    #     "ComputePointCloudToPointCloudDistance",
+    #     "ComputePointCloudMeanAndCovariance",
+    #     "ComputePointCloudMahalanobisDistance",
+    #     "ComputePointCloudNearestNeighborDistance",
+    #     # RGBDImage
+    #     "RGBDImage",
+    #     "CreateRGBDImageFromColorAndDepth",
+    #     "CreateRGBDImageFromRedwoodFormat",
+    #     "CreateRGBDImageFromTUMFormat",
+    #     "CreateRGBDImageFromSUNFormat",
+    #     "CreateRGBDImageFromNYUFormat",
+    #     "RGBDImagePyramid",
+    #     "FilterRGBDImagePyramid",
+    #     "CreateRGBDImagePyramid",
+    #     # TriangleMesh
+    #     "TriangleMesh",
+    #     "SelectDownSample",
+    #     "CropTriangleMesh",
+    #     "CreateMeshBox",
+    #     "CreateMeshSphere",
+    #     "CreateMeshCylinder",
+    #     "CreateMeshCone",
+    #     "CreateMeshArrow",
+    #     "CreateMeshCoordinateFrame",
+    #     # VoxelGrid
+    #     "VoxelGrid",
+    #     "CreateSurfaceVoxelGridFromPointCloud",
+    # ]
+
+    # Config: Integration
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Integration")
     object_names = [
-        "Geometry",
-        "Geometry2D",
-        "Geometry3D",
-        # Image
-        "Image",
-        "CreateDepthToCameraDistanceMultiplierFloatImage",
-        "PointerAt",
-        "ConvertDepthToFloatImage",
-        "FlipImage",
-        "FilterImage",
-        "FilterHorizontalImage",
-        "DownsampleImage",
-        "DilateImage",
-        "LinearTransformImage",
-        "ClipIntensityImage",
-        "CreateImageFromFloatImage",
-        "ImagePyramid",
-        "FilterImagePyramid",
-        "CreateImagePyramid",
-        "CreateDepthBoundaryMask",
-        # KDTree
-        "KDTreeFlann",
-        "KDTreeSearchParam",
-        "KDTreeSearchParamKNN",
-        "KDTreeSearchParamRadius",
-        "KDTreeSearchParamHybrid",
-        # LineSet
-        "LineSet",
-        # PointCloud
-        "PointCloud",
-        "CreatePointCloudFromDepthImage",
-        "CreatePointCloudFromRGBDImage",
-        "SelectDownSample",
-        "VoxelDownSample",
-        "VoxelDownSampleAndTrace",
-        "UniformDownSample",
-        "CropPointCloud",
-        "RemoveRadiusOutliers",
-        "RemoveStatisticalOutliers",
-        "EstimateNormals",
-        "OrientNormalsToAlignWithDirection",
-        "OrientNormalsTowardsCameraLocation",
-        "ComputePointCloudToPointCloudDistance",
-        "ComputePointCloudMeanAndCovariance",
-        "ComputePointCloudMahalanobisDistance",
-        "ComputePointCloudNearestNeighborDistance",
-        # RGBDImage
-        "RGBDImage",
-        "CreateRGBDImageFromColorAndDepth",
-        "CreateRGBDImageFromRedwoodFormat",
-        "CreateRGBDImageFromTUMFormat",
-        "CreateRGBDImageFromSUNFormat",
-        "CreateRGBDImageFromNYUFormat",
-        "RGBDImagePyramid",
-        "FilterRGBDImagePyramid",
-        "CreateRGBDImagePyramid",
-        # TriangleMesh
-        "TriangleMesh",
-        "SelectDownSample",
-        "CropTriangleMesh",
-        "CreateMeshBox",
-        "CreateMeshSphere",
-        "CreateMeshCylinder",
-        "CreateMeshCone",
-        "CreateMeshArrow",
-        "CreateMeshCoordinateFrame",
-        # VoxelGrid
-        "VoxelGrid",
-        "CreateSurfaceVoxelGridFromPointCloud",
+        "UniformTSDFVolume",
+        "TSDFVolumeColorType",
+        "TSDFVolume",
+        "ScalableTSDFVolume",
     ]
 
     # Config: utility
