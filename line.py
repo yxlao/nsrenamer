@@ -91,8 +91,8 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if verbose:
         print(f"[duplicate ns   ]: {line}")
 
-    line = re.sub(rf"->{namespace}::{object_name}", f"->{object_name}", line)
-    line = re.sub(rf"\.{namespace}::{object_name}", f".{object_name}", line)
+    line = line.replace(f"->{namespace}::{object_name}", f"->{object_name}")
+    line = line.replace(f".{namespace}::{object_name}", f".{object_name}")
     if verbose:
         print(f"[pointer fix    ]: {line}")
 
