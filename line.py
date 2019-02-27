@@ -39,7 +39,7 @@ def process_line_one(line, object_name, namespace, verbose=False):
 def process_line(line, object_names, namespace):
     new_line = line
     for object_name in object_names:
-        new_line = process_line_one(line, object_name, namespace)
+        new_line = process_line_one(new_line, object_name, namespace)
     return new_line
 
 
