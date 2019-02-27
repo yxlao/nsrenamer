@@ -13,7 +13,7 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if "TEST" in line:
         return line
 
-    if '//' == line[:2]:
+    if "//" == line[:2]:
         return line
 
     if verbose:
@@ -36,7 +36,11 @@ def process_line_one(line, object_name, namespace, verbose=False):
         print(f"[back_quote     ]: {line}")
         print()
 
-    line = re.sub(rf"class {namespace}::{object_name};", f"namespace {namespace} {{class {object_name};}}", line)
+    line = re.sub(
+        rf"class {namespace}::{object_name};",
+        f"namespace {namespace} {{class {object_name};}}",
+        line,
+    )
     if verbose:
         print(f"[forward_declare]: {line}")
         print()
@@ -75,13 +79,13 @@ if __name__ == "__main__":
             raise ValueError(f"Test filed for:\n {before}\n")
 
     # Test 1
-    before = 'ReadPinholeCameraTrajectory(argv[1], trajectory);'
+    before = "ReadPinholeCameraTrajectory(argv[1], trajectory);"
     after = before
     if after != process_line_one(before, "PinholeCameraTrajectory", "camera"):
         raise ValueError(f"Test filed for:\n {before}\n")
 
     # Test 2: forward declaration
-    before = 'class PinholeCameraIntrinsic;'
-    after = 'namespace camera {class PinholeCameraIntrinsic;}'
+    before = "class PinholeCameraIntrinsic;"
+    after = "namespace camera {class PinholeCameraIntrinsic;}"
     if after != process_line_one(before, "PinholeCameraIntrinsic", "camera"):
         raise ValueError(f"Test filed for:\n {before}\n")

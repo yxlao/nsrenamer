@@ -59,6 +59,12 @@ def glob_cpp_and_h_in_folder(foder_path):
     return files
 
 
+def glob_h_in_folder(foder_path):
+    files = list(foder_path.glob("**/*.h"))
+    files = [str(f) for f in files]
+    return files
+
+
 if __name__ == "__main__":
     root_dir = Path.home() / "repo" / "Open3D"
     include_dirs = [
@@ -68,14 +74,16 @@ if __name__ == "__main__":
     ]
 
     exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Camera")
-    exclude_files = glob_cpp_and_h_in_folder(Path("/home/ylao/repo/Open3D/src/Open3D/Camera"))
+    exclude_files = glob_h_in_folder(Path("/home/ylao/repo/Open3D/src/Open3D/Camera"))
     print("[exclude_files]")
     pprint(exclude_files)
 
-    object_names = ["PinholeCameraIntrinsicParameters",
-                    "PinholeCameraIntrinsic",
-                    "PinholeCameraParameters",
-                    "PinholeCameraTrajectory"]
+    object_names = [
+        "PinholeCameraIntrinsicParameters",
+        "PinholeCameraIntrinsic",
+        "PinholeCameraParameters",
+        "PinholeCameraTrajectory",
+    ]
     print("[object_names]")
     pprint(object_names)
 
