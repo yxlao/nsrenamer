@@ -16,7 +16,7 @@ def git_reset(root_dir):
     subprocess.run(cmd)
 
 
-def process_file(file_path, object_names, name_space):
+def process_file(file_path, object_names, namespace):
     # Read
     # print(f"Processing {file_path}")
     with open(file_path, "r") as f:
@@ -26,7 +26,7 @@ def process_file(file_path, object_names, name_space):
     changed = False
     processed_lines = []
     for line in lines:
-        processed_line = process_line(line, object_names, name_space)
+        processed_line = process_line(line, object_names, namespace)
         processed_lines.append(processed_line)
         if processed_line != line:
             changed = True
@@ -42,14 +42,14 @@ def process_file(file_path, object_names, name_space):
         format_file(file_path)
 
 
-def rename_namesapce(object_names, name_space, include_dirs, exclude_files):
+def rename_namesapce(object_names, namespace, include_dirs, exclude_files):
     target_files = []
     for include_dir in include_dirs:
         target_files.extend(list(include_dir.glob("**/*.cpp")))
         target_files.extend(list(include_dir.glob("**/*.h")))
     target_files = [f for f in target_files if str(f) not in exclude_files]
     for target_file in target_files:
-        process_file(target_file, object_names, name_space)
+        process_file(target_file, object_names, namespace)
 
 
 def glob_cpp_and_h_in_folder(foder_path):
@@ -76,9 +76,9 @@ if __name__ == "__main__":
     print("[object_names]")
     pprint(object_names)
 
-    name_space = exclude_dir.name.lower()
-    print("[name_space]")
-    print(name_space)
+    namespace = exclude_dir.name.lower()
+    print("[namespace]")
+    print(namespace)
 
     with tempfile.TemporaryDirectory() as temp_dir:
         for exclude_file in exclude_files:
@@ -90,4 +90,4 @@ if __name__ == "__main__":
             temp_exclude_file = Path(temp_dir + exclude_file)
             copyfile(temp_exclude_file, exclude_file)
 
-    # rename_namesapce(object_names, name_space, include_dirs, exclude_files)
+    # rename_namesapce(object_names, namespace, include_dirs, exclude_files)

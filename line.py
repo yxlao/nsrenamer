@@ -5,27 +5,27 @@ import re
 #     line = 'look, "PinholeCameraIntrinsic" is good'
 #     # regex = r'(?!%s|%s|%s)(%s)' % (f'{object_name}.h', f'"{object_name}"', f'TEST\({object_name}', object_name)
 #     regex = r'(?!"PinholeCameraIntrinsic")(PinholeCameraIntrinsic)'
-#     line_sub = re.sub(regex, f'{name_space}::{object_name}', line)
+#     line_sub = re.sub(regex, f'{namespace}::{object_name}', line)
 # return line
 
 
-def process_line_one(line, object_name, name_space, verbose=False):
+def process_line_one(line, object_name, namespace, verbose=False):
     if verbose:
         print(f"[init       ]: {line}")
 
-    line = re.sub(rf"{object_name}\b", f"{name_space}::{object_name}", line)
+    line = re.sub(rf"{object_name}\b", f"{namespace}::{object_name}", line)
     if verbose:
         print(f"[all_replace]: {line}")
 
-    line = re.sub(rf"{name_space}::{object_name}\.h", f"{object_name}.h", line)
+    line = re.sub(rf"{namespace}::{object_name}\.h", f"{object_name}.h", line)
     if verbose:
         print(f"[back_header]: {line}")
 
-    line = re.sub(rf'"{name_space}::{object_name}"', f'"{object_name}"', line)
+    line = re.sub(rf'"{namespace}::{object_name}"', f'"{object_name}"', line)
     if verbose:
         print(f"[back_quote ]: {line}")
 
-    line = re.sub(rf"TEST\({name_space}::{object_name}", f"TEST({object_name}", line)
+    line = re.sub(rf"TEST\({namespace}::{object_name}", f"TEST({object_name}", line)
     if verbose:
         print(f"[back_quote ]: {line}")
         print()
@@ -33,10 +33,10 @@ def process_line_one(line, object_name, name_space, verbose=False):
     return line
 
 
-def process_line(line, object_names, name_space):
+def process_line(line, object_names, namespace):
     new_line = line
     for object_name in object_names:
-        new_line = process_line_one(line, object_name, name_space)
+        new_line = process_line_one(line, object_name, namespace)
     return new_line
 
 
