@@ -83,19 +83,11 @@ def process_line_one(line, object_name, namespace, verbose=False):
         print(f"[destructor     ]: {line}")
 
     for enum_class in enum_classes:
-        line = re.sub(
-            rf"{enum_class}::{namespace}::",
-            f"{enum_class}::",
-            line,
-        )
+        line = re.sub(rf"{enum_class}::{namespace}::", f"{enum_class}::", line)
     if verbose:
         print(f"[enum class     ]: {line}")
 
-    line = re.sub(
-        rf"{namespace}::{namespace}::",
-        f"{namespace}::",
-        line,
-    )
+    line = re.sub(rf"{namespace}::{namespace}::", f"{namespace}::", line)
     if verbose:
         print(f"[duplicate ns   ]: {line}")
 
@@ -104,10 +96,32 @@ def process_line_one(line, object_name, namespace, verbose=False):
     return line
 
 
-def process_line(line, object_names, namespace):
+map_object_name_to_ignored_files = {
+    "CropPointCloud": {
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygon.cpp",
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygon.h",
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygonVolume.cpp",
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygonVolume.h",
+    },
+    "CropTriangleMesh": {
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygon.cpp",
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygon.h",
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygonVolume.cpp",
+        "/home/ylao/repo/Open3D/src/Open3D/Visualization/Utility/SelectionPolygonVolume.h",
+    },
+}
+
+
+def process_line(line, object_names, namespace, file_path=None):
     new_line = line
     for object_name in object_names:
-        new_line = process_line_one(new_line, object_name, namespace)
+        if (
+            object_name in map_object_name_to_ignored_files
+            and file_path in map_object_name_to_ignored_files[object_name]
+        ):
+            new_line = new_line
+        else:
+            new_line = process_line_one(new_line, object_name, namespace)
     return new_line
 
 

@@ -27,7 +27,9 @@ def process_file(file_path, object_names, namespace):
     changed = False
     processed_lines = []
     for line in lines:
-        processed_line = process_line(line, object_names, namespace)
+        processed_line = process_line(
+            line, object_names, namespace, file_path=file_path
+        )
         processed_lines.append(processed_line)
         if processed_line != line:
             changed = True
