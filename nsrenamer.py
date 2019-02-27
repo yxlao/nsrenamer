@@ -1,21 +1,12 @@
-import re
 from pathlib import Path
 import subprocess
+from process_line import process_line
 
 def format_file(file_path):
     cmd = ['/usr/bin/clang-format-5.0',
            '-i',
            file_path]
     subprocess.run(cmd)
-
-
-def process_line(line, object_names, new_name_space):
-    for object_name in object_names:
-        regex = r'(?!%s)(?!%s)(?!%s)(%s)' % (f'{object_name}.h', f'"{object_name}"', f'TEST\({object_name}', object_name)
-        if re.search(regex, line):
-            print(regex)
-            print(line.strip())
-    return line
 
 
 def process_file(file_path, object_names, new_name_space):
