@@ -14,23 +14,28 @@ def process_line_one(line, object_name, namespace, verbose=False):
         return line
 
     if verbose:
-        print(f"[init       ]: {line}")
+        print(f"[init           ]: {line}")
 
     line = re.sub(rf"\b{object_name}\b", f"{namespace}::{object_name}", line)
     if verbose:
-        print(f"[all_replace]: {line}")
+        print(f"[all_replace    ]: {line}")
 
     line = re.sub(rf"{namespace}::{object_name}\.h", f"{object_name}.h", line)
     if verbose:
-        print(f"[back_header]: {line}")
+        print(f"[back_header    ]: {line}")
 
     line = re.sub(rf'"{namespace}::{object_name}"', f'"{object_name}"', line)
     if verbose:
-        print(f"[back_quote ]: {line}")
+        print(f"[back_quote     ]: {line}")
 
     line = re.sub(rf"TEST\({namespace}::{object_name}", f"TEST({object_name}", line)
     if verbose:
-        print(f"[back_quote ]: {line}")
+        print(f"[back_quote     ]: {line}")
+        print()
+
+    line = re.sub(rf"class {namespace}::{object_name};", f"namespace {namespace} {{class {object_name};}}", line)
+    if verbose:
+        print(f"[forward_declare]: {line}")
         print()
 
     return line
@@ -70,4 +75,10 @@ if __name__ == "__main__":
     before = 'ReadPinholeCameraTrajectory(argv[1], trajectory);'
     after = before
     if after != process_line_one(before, "PinholeCameraTrajectory", "camera"):
+        raise ValueError(f"Test filed for:\n {before}\n")
+
+    # Test 2: forward declaration
+    before = 'class PinholeCameraIntrinsic;'
+    after = 'namespace camera {class PinholeCameraIntrinsic;}'
+    if after != process_line_one(before, "PinholeCameraIntrinsic", "camera"):
         raise ValueError(f"Test filed for:\n {before}\n")
