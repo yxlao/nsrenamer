@@ -82,6 +82,15 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if verbose:
         print(f"[destructor     ]: {line}")
 
+    for enum_class in enum_classes:
+        line = re.sub(
+            rf"{enum_class}::{namespace}::",
+            f"{enum_class}::",
+            line,
+        )
+    if verbose:
+        print(f"[enum class     ]: {line}")
+
     if verbose:
         print()
     return line
@@ -139,4 +148,10 @@ if __name__ == "__main__":
     before = "PinholeCameraIntrinsic::~PinholeCameraIntrinsic"
     after = "camera::PinholeCameraIntrinsic::~PinholeCameraIntrinsic"
     if after != process_line_one(before, "PinholeCameraIntrinsic", "camera"):
+        raise ValueError(f"Test filed for:\n {before}\n")
+
+    # Test 5: enum class
+    before = "if (!ptr || ptr->GetGeometryType() != Geometry::GeometryType::PointCloud)"
+    after = "if (!ptr || ptr->GetGeometryType() != Geometry::GeometryType::PointCloud)"
+    if after != process_line_one(before, "PointCloud", "geometry"):
         raise ValueError(f"Test filed for:\n {before}\n")
