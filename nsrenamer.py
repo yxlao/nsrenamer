@@ -224,62 +224,72 @@ if __name__ == "__main__":
     #     "ComputeRGBDOdometry",
     # ]
 
-    # Config: Registration
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Registration")
-    object_names = [
-        "RegistrationColoredICP",
-        "CorrespondenceChecker",
-        "CorrespondenceCheckerBasedOnEdgeLength",
-        "CorrespondenceCheckerBasedOnDistance",
-        "CorrespondenceCheckerBasedOnNormal",
-        "FastGlobalRegistrationOption",
-        "FastGlobalRegistration",
-        "Feature",
-        "ComputeFPFHFeature",
-        "GlobalOptimization",
-        "CreatePoseGraphWithoutInvalidEdges",
-        "GlobalOptimizationOption",
-        "GlobalOptimizationConvergenceCriteria",
-        "GlobalOptimizationMethod",
-        "GlobalOptimizationGaussNewton",
-        "GlobalOptimizationLevenbergMarquardt",
-        "PoseGraphNode",
-        "PoseGraphEdge",
-        "PoseGraph",
-        "ICPConvergenceCriteria",
-        "RANSACConvergenceCriteria",
-        "RegistrationResult",
-        "EvaluateRegistration",
-        "RegistrationICP",
-        "RegistrationRANSACBasedOnCorrespondence",
-        "RegistrationRANSACBasedOnFeatureMatching",
-        "GetInformationMatrixFromPointClouds",
-        "CorrespondenceSet",
-        "TransformationEstimationType",
-        "TransformationEstimation",
-        "TransformationEstimationPointToPoint",
-        "TransformationEstimationPointToPlane",
-    ]
+    # # Config: Registration
+    # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Registration")
+    # object_names = [
+    #     "RegistrationColoredICP",
+    #     "CorrespondenceChecker",
+    #     "CorrespondenceCheckerBasedOnEdgeLength",
+    #     "CorrespondenceCheckerBasedOnDistance",
+    #     "CorrespondenceCheckerBasedOnNormal",
+    #     "FastGlobalRegistrationOption",
+    #     "FastGlobalRegistration",
+    #     "Feature",
+    #     "ComputeFPFHFeature",
+    #     "GlobalOptimization",
+    #     "CreatePoseGraphWithoutInvalidEdges",
+    #     "GlobalOptimizationOption",
+    #     "GlobalOptimizationConvergenceCriteria",
+    #     "GlobalOptimizationMethod",
+    #     "GlobalOptimizationGaussNewton",
+    #     "GlobalOptimizationLevenbergMarquardt",
+    #     "PoseGraphNode",
+    #     "PoseGraphEdge",
+    #     "PoseGraph",
+    #     "ICPConvergenceCriteria",
+    #     "RANSACConvergenceCriteria",
+    #     "RegistrationResult",
+    #     "EvaluateRegistration",
+    #     "RegistrationICP",
+    #     "RegistrationRANSACBasedOnCorrespondence",
+    #     "RegistrationRANSACBasedOnFeatureMatching",
+    #     "GetInformationMatrixFromPointClouds",
+    #     "CorrespondenceSet",
+    #     "TransformationEstimationType",
+    #     "TransformationEstimation",
+    #     "TransformationEstimationPointToPoint",
+    #     "TransformationEstimationPointToPlane",
+    # ]
 
     # Config: utility
-    # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Utility")
-    # object_names = [
-    #     "Timer",
-    #     "ScopeTimer",
-    #     "FPSTimer",
-    #     "IJsonConvertible",
-    #     "SplitString",
-    #     "TransformVector6dToMatrix4d",
-    #     "TransformMatrix4dToVector6d",
-    #     "SolveLinearSystemPSD",
-    #     "SolveJacobianSystemAndObtainExtrinsicMatrix",
-    #     "SolveJacobianSystemAndObtainExtrinsicMatrixArray",
-    #     "ComputeJTJandJTr",
-    # ]
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Utility")
+    object_names = [
+        "Timer",
+        "ScopeTimer",
+        "FPSTimer",
+        "IJsonConvertible",
+        "hash_tuple",
+        "hash_eigen",
+        "filesystem",
+        "SplitString",
+
+        "Matrix4d_allocator"
+        "Matrix6d_allocator"
+        "Vector2d_allocator"
+        "Vector4i_allocator"
+        "Vector4d_allocator"
+        "Vector6d_allocator"
+        "TransformVector6dToMatrix4d",
+        "TransformMatrix4dToVector6d",
+        "SolveLinearSystemPSD",
+        "SolveJacobianSystemAndObtainExtrinsicMatrix",
+        "SolveJacobianSystemAndObtainExtrinsicMatrixArray",
+        "ComputeJTJandJTr",
+    ]
 
     namespace = camel_to_snake(exclude_dir.name)
     exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     object_names = list(set(object_names))
     rename_namespace(
-        object_names, namespace, include_dirs, exclude_files, reset_only=False
+        object_names, namespace, include_dirs, exclude_files, reset_only=True
     )
