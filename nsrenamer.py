@@ -109,19 +109,93 @@ if __name__ == "__main__":
     #     "PinholeCameraTrajectory",
     # ]
 
-    # Config: color_map
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/ColorMap")
+    # # Config: color_map
+    # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/ColorMap")
+    # object_names = [
+    #     "ColorMapOptimizationOption",
+    #     "ColorMapOptimization",
+    #     "ColorMapOptimizationJacobian",
+    #     "ComputeJTJandJTrNonRigid",
+    #     "ImageWarpingField",
+    #     "Project3DPointAndGetUVDepth",
+    #     "CreateVertexAndImageVisibility",
+    #     "QueryImageIntensity",
+    #     "SetProxyIntensityForVertex",
+    #     "SetGeometryColorAverage",
+    # ]
+
+    # Config: geometry
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Geometry")
     object_names = [
-        "ColorMapOptimizationOption",
-        "ColorMapOptimization",
-        "ColorMapOptimizationJacobian",
-        "ComputeJTJandJTrNonRigid",
-        "ImageWarpingField",
-        "Project3DPointAndGetUVDepth",
-        "CreateVertexAndImageVisibility",
-        "QueryImageIntensity",
-        "SetProxyIntensityForVertex",
-        "SetGeometryColorAverage",
+        "Geometry",
+        "Geometry2D",
+        "Geometry3D",
+        # Image
+        "Image",
+        "CreateDepthToCameraDistanceMultiplierFloatImage",
+        "PointerAt",
+        "ConvertDepthToFloatImage",
+        "FlipImage",
+        "FilterImage",
+        "FilterHorizontalImage",
+        "DownsampleImage",
+        "DilateImage",
+        "LinearTransformImage",
+        "ClipIntensityImage",
+        "CreateImageFromFloatImage",
+        "ImagePyramid",
+        "FilterImagePyramid",
+        "CreateImagePyramid",
+        "CreateDepthBoundaryMask",
+        # KDTree
+        "KDTreeFlann",
+        "KDTreeSearchParam",
+        "KDTreeSearchParamKNN",
+        "KDTreeSearchParamRadius",
+        "KDTreeSearchParamHybrid",
+        # LineSet
+        "LineSet",
+        # PointCloud
+        "PointCloud",
+        "CreatePointCloudFromDepthImage",
+        "CreatePointCloudFromRGBDImage",
+        "SelectDownSample",
+        "VoxelDownSample",
+        "VoxelDownSampleAndTrace",
+        "UniformDownSample",
+        "CropPointCloud",
+        "RemoveRadiusOutliers",
+        "RemoveStatisticalOutliers",
+        "EstimateNormals",
+        "OrientNormalsToAlignWithDirection",
+        "OrientNormalsTowardsCameraLocation",
+        "ComputePointCloudToPointCloudDistance",
+        "ComputePointCloudMeanAndCovariance",
+        "ComputePointCloudMahalanobisDistance",
+        "ComputePointCloudNearestNeighborDistance",
+        # RGBDImage
+        "RGBDImage",
+        "CreateRGBDImageFromColorAndDepth",
+        "CreateRGBDImageFromRedwoodFormat",
+        "CreateRGBDImageFromTUMFormat",
+        "CreateRGBDImageFromSUNFormat",
+        "CreateRGBDImageFromNYUFormat",
+        "RGBDImagePyramid",
+        "FilterRGBDImagePyramid",
+        "CreateRGBDImagePyramid",
+        # TriangleMesh
+        "TriangleMesh",
+        "SelectDownSample",
+        "CropTriangleMesh",
+        "CreateMeshBox",
+        "CreateMeshSphere",
+        "CreateMeshCylinder",
+        "CreateMeshCone",
+        "CreateMeshArrow",
+        "CreateMeshCoordinateFrame",
+        # VoxelGrid
+        "VoxelGrid",
+        "CreateSurfaceVoxelGridFromPointCloud",
     ]
 
     # Config: utility
