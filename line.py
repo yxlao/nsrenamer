@@ -16,7 +16,7 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if verbose:
         print(f"[init       ]: {line}")
 
-    line = re.sub(rf"{object_name}\b", f"{namespace}::{object_name}", line)
+    line = re.sub(rf"\b{object_name}\b", f"{namespace}::{object_name}", line)
     if verbose:
         print(f"[all_replace]: {line}")
 
@@ -44,6 +44,7 @@ def process_line(line, object_names, namespace):
 
 
 if __name__ == "__main__":
+    # Test 0
     before_lines = [
         "#include <Open3D/Camera/PinholeCameraIntrinsic.h>",
         'py::class_<PinholeCameraIntrinsic> pinhole_intr(m, "PinholeCameraIntrinsic",',
@@ -64,3 +65,9 @@ if __name__ == "__main__":
     for before, after in zip(before_lines, after_lines):
         if after != process_line_one(before, "PinholeCameraIntrinsic", "camera"):
             raise ValueError(f"Test filed for:\n {before}\n")
+
+    # Test 1
+    before = 'ReadPinholeCameraTrajectory(argv[1], trajectory);'
+    after = before
+    if after != process_line_one(before, "PinholeCameraTrajectory", "camera"):
+        raise ValueError(f"Test filed for:\n {before}\n")
