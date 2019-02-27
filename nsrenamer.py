@@ -213,15 +213,61 @@ if __name__ == "__main__":
     #     "ScalableTSDFVolume",
     # ]
 
-    # Config: Odometry
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Odometry")
+    # # Config: Odometry
+    # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Odometry")
+    # object_names = [
+    #     "CorrespondenceSetPixelWise",
+    #     "RGBDOdometryJacobian",
+    #     "RGBDOdometryJacobianFromColorTerm",
+    #     "RGBDOdometryJacobianFromHybridTerm",
+    #     "OdometryOption",
+    #     "ComputeRGBDOdometry",
+    # ]
+
+    # Config: Registration
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Registration")
     object_names = [
-        "CorrespondenceSetPixelWise",
-        "RGBDOdometryJacobian",
-        "RGBDOdometryJacobianFromColorTerm",
-        "RGBDOdometryJacobianFromHybridTerm",
-        "OdometryOption",
-        "ComputeRGBDOdometry",
+        "RegistrationColoredICP",
+
+        "CorrespondenceChecker",
+        "CorrespondenceCheckerBasedOnEdgeLength",
+        "CorrespondenceCheckerBasedOnDistance",
+        "CorrespondenceCheckerBasedOnNormal",
+
+        "FastGlobalRegistrationOption",
+        "FastGlobalRegistration",
+
+        "Feature",
+        "ComputeFPFHFeature",
+
+        "GlobalOptimization",
+        "CreatePoseGraphWithoutInvalidEdges",
+
+        "GlobalOptimizationOption",
+        "GlobalOptimizationConvergenceCriteria",
+
+        "GlobalOptimizationMethod",
+        "GlobalOptimizationGaussNewton",
+        "GlobalOptimizationLevenbergMarquardt",
+
+        "PoseGraphNode",
+        "PoseGraphEdge",
+        "PoseGraph",
+
+        "ICPConvergenceCriteria",
+        "RANSACConvergenceCriteria",
+        "RegistrationResult",
+        "EvaluateRegistration",
+        "RegistrationICP",
+        "RegistrationRANSACBasedOnCorrespondence",
+        "RegistrationRANSACBasedOnFeatureMatching",
+        "GetInformationMatrixFromPointClouds"
+        
+        "CorrespondenceSet",
+        "TransformationEstimationType",
+        "TransformationEstimation",
+        "TransformationEstimationPointToPoint",
+        "TransformationEstimationPointToPlane",
     ]
 
     # Config: utility
@@ -242,6 +288,7 @@ if __name__ == "__main__":
 
     namespace = camel_to_snake(exclude_dir.name)
     exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
+    object_names = list(set(object_names))
     rename_namespace(
         object_names, namespace, include_dirs, exclude_files, reset_only=False
     )
