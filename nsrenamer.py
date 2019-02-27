@@ -228,32 +228,24 @@ if __name__ == "__main__":
     exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Registration")
     object_names = [
         "RegistrationColoredICP",
-
         "CorrespondenceChecker",
         "CorrespondenceCheckerBasedOnEdgeLength",
         "CorrespondenceCheckerBasedOnDistance",
         "CorrespondenceCheckerBasedOnNormal",
-
         "FastGlobalRegistrationOption",
         "FastGlobalRegistration",
-
         "Feature",
         "ComputeFPFHFeature",
-
         "GlobalOptimization",
         "CreatePoseGraphWithoutInvalidEdges",
-
         "GlobalOptimizationOption",
         "GlobalOptimizationConvergenceCriteria",
-
         "GlobalOptimizationMethod",
         "GlobalOptimizationGaussNewton",
         "GlobalOptimizationLevenbergMarquardt",
-
         "PoseGraphNode",
         "PoseGraphEdge",
         "PoseGraph",
-
         "ICPConvergenceCriteria",
         "RANSACConvergenceCriteria",
         "RegistrationResult",
@@ -261,8 +253,7 @@ if __name__ == "__main__":
         "RegistrationICP",
         "RegistrationRANSACBasedOnCorrespondence",
         "RegistrationRANSACBasedOnFeatureMatching",
-        "GetInformationMatrixFromPointClouds"
-        
+        "GetInformationMatrixFromPointClouds",
         "CorrespondenceSet",
         "TransformationEstimationType",
         "TransformationEstimation",
