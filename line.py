@@ -8,15 +8,28 @@ import re
 #     line_sub = re.sub(regex, f'{name_space}::{object_name}', line)
 # return line
 
-def process_line_one(line, object_name, name_space):
-    print(f"[init       ]: {line}")
-    line = re.sub(rf'{object_name}\b', rf'{name_space}::{object_name}', line)
-    print(f"[all_replace]: {line}")
-    line = re.sub(rf'{name_space}::{object_name}\.h', rf'{object_name}.h', line)
-    print(f"[back_header]: {line}")
-    line = re.sub(rf'"{name_space}::{object_name}"', rf'"{object_name}"', line)
-    print(f"[back_quote ]: {line}")
-    print()
+
+def process_line_one(line, object_name, name_space, verbose=False):
+    if verbose:
+        print(f"[init       ]: {line}")
+
+    line = re.sub(rf"{object_name}\b", f"{name_space}::{object_name}", line)
+    if verbose:
+        print(f"[all_replace]: {line}")
+
+    line = re.sub(rf"{name_space}::{object_name}\.h", f"{object_name}.h", line)
+    if verbose:
+        print(f"[back_header]: {line}")
+
+    line = re.sub(rf'"{name_space}::{object_name}"', f'"{object_name}"', line)
+    if verbose:
+        print(f"[back_quote ]: {line}")
+
+    line = re.sub(rf"TEST\({name_space}::{object_name}", f"TEST({object_name}", line)
+    if verbose:
+        print(f"[back_quote ]: {line}")
+        print()
+
     return line
 
 
@@ -29,22 +42,22 @@ def process_line(line, object_names, name_space):
 
 if __name__ == "__main__":
     before_lines = [
-        '#include <Open3D/Camera/PinholeCameraIntrinsic.h>',
+        "#include <Open3D/Camera/PinholeCameraIntrinsic.h>",
         'py::class_<PinholeCameraIntrinsic> pinhole_intr(m, "PinholeCameraIntrinsic",',
         '"PinholeCameraIntrinsic");',
-        'py::detail::bind_default_constructor<PinholeCameraIntrinsic>(pinhole_intr);',
-        'TEST(PinholeCameraIntrinsic, GetFocalLength) {',
-        'PinholeCameraIntrinsicParameters::Kinect2ColorCameraDefault)'
+        "py::detail::bind_default_constructor<PinholeCameraIntrinsic>(pinhole_intr);",
+        "TEST(PinholeCameraIntrinsic, GetFocalLength) {",
+        "PinholeCameraIntrinsicParameters::Kinect2ColorCameraDefault)",
     ]
     after_lines = [
-        '#include <Open3D/Camera/PinholeCameraIntrinsic.h>',
+        "#include <Open3D/Camera/PinholeCameraIntrinsic.h>",
         'py::class_<camera::PinholeCameraIntrinsic> pinhole_intr(m, "PinholeCameraIntrinsic",',
         '"PinholeCameraIntrinsic");',
-        'py::detail::bind_default_constructor<camera::PinholeCameraIntrinsic>(pinhole_intr);',
-        'TEST(PinholeCameraIntrinsic, GetFocalLength) {',
-        'PinholeCameraIntrinsicParameters::Kinect2ColorCameraDefault)'
+        "py::detail::bind_default_constructor<camera::PinholeCameraIntrinsic>(pinhole_intr);",
+        "TEST(PinholeCameraIntrinsic, GetFocalLength) {",
+        "PinholeCameraIntrinsicParameters::Kinect2ColorCameraDefault)",
     ]
 
-    for before_line in before_lines:
-        process_line_one(before_line, 'PinholeCameraIntrinsic', 'camera')
-
+    for before, after in zip(before_lines, after_lines):
+        if after != process_line_one(before, "PinholeCameraIntrinsic", "camera"):
+            raise ValueError(f"Test filed for:\n {before}\n")
