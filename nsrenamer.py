@@ -272,19 +272,37 @@ if __name__ == "__main__":
         "hash_eigen",
         "filesystem",
         "SplitString",
-
-        "Matrix4d_allocator"
-        "Matrix6d_allocator"
-        "Vector2d_allocator"
-        "Vector4i_allocator"
-        "Vector4d_allocator"
-        "Vector6d_allocator"
+        # Eigen
+        "Matrix4d_allocator",
+        "Matrix6d_allocator",
+        "Vector2d_allocator",
+        "Vector4i_allocator",
+        "Vector4d_allocator",
+        "Vector6d_allocator",
         "TransformVector6dToMatrix4d",
         "TransformMatrix4dToVector6d",
         "SolveLinearSystemPSD",
         "SolveJacobianSystemAndObtainExtrinsicMatrix",
         "SolveJacobianSystemAndObtainExtrinsicMatrixArray",
         "ComputeJTJandJTr",
+        # Console
+        "VerbosityLevel",
+        "SetVerbosityLevel",
+        "GetVerbosityLevel",
+        "PrintError",
+        "PrintWarning",
+        "PrintInfo",
+        "PrintDebug",
+        "PrintAlways",
+        "ResetConsoleProgress",
+        "AdvanceConsoleProgress",
+        "GetCurrentTimeStamp",
+        "GetProgramOptionAsString",
+        "GetProgramOptionAsInt",
+        "GetProgramOptionAsDouble",
+        "GetProgramOptionAsEigenVectorXd",
+        "ProgramOptionExists",
+        "ProgramOptionExistsAny",
     ]
 
     namespace = camel_to_snake(exclude_dir.name)
