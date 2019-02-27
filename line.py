@@ -43,9 +43,21 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if verbose:
         print(f"[forward_declare]: {line}")
 
-    line = re.sub(rf"{object_name}::{namespace}::{object_name}", f"{object_name}::{object_name}", line)
+    line = re.sub(
+        rf"{object_name}::{namespace}::{object_name}",
+        f"{object_name}::{object_name}",
+        line,
+    )
     if verbose:
         print(f"[constructor    ]: {line}")
+
+    line = re.sub(
+        rf"{object_name}::~{namespace}::{object_name}",
+        f"{object_name}::~{object_name}",
+        line,
+    )
+    if verbose:
+        print(f"[destructor     ]: {line}")
 
     if verbose:
         print()
@@ -97,5 +109,11 @@ if __name__ == "__main__":
     # Test 3: constructor
     before = "PinholeCameraIntrinsic::PinholeCameraIntrinsic"
     after = "camera::PinholeCameraIntrinsic::PinholeCameraIntrinsic"
+    if after != process_line_one(before, "PinholeCameraIntrinsic", "camera"):
+        raise ValueError(f"Test filed for:\n {before}\n")
+
+    # Test 4: destructor
+    before = "PinholeCameraIntrinsic::~PinholeCameraIntrinsic"
+    after = "camera::PinholeCameraIntrinsic::~PinholeCameraIntrinsic"
     if after != process_line_one(before, "PinholeCameraIntrinsic", "camera"):
         raise ValueError(f"Test filed for:\n {before}\n")
