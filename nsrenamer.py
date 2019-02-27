@@ -67,8 +67,19 @@ if __name__ == "__main__":
         root_dir / "docs" / "_static" / "C++",
     ]
 
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Camera")
     exclude_files = glob_cpp_and_h_in_folder(Path("/home/ylao/repo/Open3D/src/Open3D/Camera"))
+    print("[exclude_files]")
     pprint(exclude_files)
+
+    object_names = ["PinholeCameraIntrinsic", "PinholeCameraIntrinsicParameters"]
+    print("[object_names]")
+    pprint(object_names)
+
+    name_space = exclude_dir.name.lower()
+    print("[name_space]")
+    print(name_space)
+
     with tempfile.TemporaryDirectory() as temp_dir:
         for exclude_file in exclude_files:
             temp_exclude_file = Path(temp_dir + exclude_file)
@@ -78,8 +89,5 @@ if __name__ == "__main__":
         for exclude_file in exclude_files:
             temp_exclude_file = Path(temp_dir + exclude_file)
             copyfile(temp_exclude_file, exclude_file)
-
-    object_names = ["PinholeCameraIntrinsic", "PinholeCameraIntrinsicParameters"]
-    name_space = "camera"
 
     # rename_namesapce(object_names, name_space, include_dirs, exclude_files)
