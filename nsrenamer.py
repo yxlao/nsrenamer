@@ -91,12 +91,27 @@ if __name__ == "__main__":
     ]
 
     # Config: camera
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Camera")
+    # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Camera")
+    # object_names = [
+    #     "PinholeCameraIntrinsicParameters",
+    #     "PinholeCameraIntrinsic",
+    #     "PinholeCameraParameters",
+    #     "PinholeCameraTrajectory",
+    # ]
+
+    # Config: color_map
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/ColorMap")
     object_names = [
-        "PinholeCameraIntrinsicParameters",
-        "PinholeCameraIntrinsic",
-        "PinholeCameraParameters",
-        "PinholeCameraTrajectory",
+        "ColorMapOptimizationOption",
+        "ColorMapOptimization",
+        "ColorMapOptimizationJacobian",
+        "ComputeJTJandJTrNonRigid",
+        "ImageWarpingField",
+        "Project3DPointAndGetUVDepth",
+        "CreateVertexAndImageVisibility",
+        "QueryImageIntensity",
+        "SetProxyIntensityForVertex",
+        "SetGeometryColorAverage",
     ]
 
     # Config: utility

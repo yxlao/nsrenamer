@@ -13,7 +13,7 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if "TEST" in line:
         return line
 
-    if "//" == line[:2]:
+    if "//" == line.strip()[:2]:
         return line
 
     if verbose:
