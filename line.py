@@ -16,6 +16,9 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if "//" == line.strip()[:2]:
         return line
 
+    if "#include" == line.strip()[:8]:
+        return line
+
     if verbose:
         print(f"[init           ]: {line}")
 
