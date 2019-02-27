@@ -406,6 +406,24 @@ if __name__ == "__main__":
             "VisualizerWithCustomAnimation",
             "VisualizerWithEditing",
             "VisualizerWithKeyCallback",
+            # utility
+            "SelectionPolygonVolume",
+            "SelectionPolygon",
+            "PointCloudPicker",
+            "DrawGeometries",
+            "DrawGeometriesWithCustomAnimation",
+            "DrawGeometriesWithAnimationCallback",
+            "DrawGeometriesWithKeyCallbacks",
+            "DrawGeometriesWithEditing",
+            "ColorMap",
+            "ColorMapGray",
+            "ColorMapJet",
+            "ColorMapSummer",
+            "ColorMapWinter",
+            "ColorMapHot",
+            "GetGlobalColorMap",
+            "SetGlobalColorMap",
+            "BoundingBox",
         }
     )
     namespace = "visualization"
