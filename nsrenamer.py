@@ -1,6 +1,6 @@
 from pathlib import Path
 import subprocess
-from process_line import process_line
+from line import process_line
 
 def format_file(file_path):
     cmd = ['/usr/bin/clang-format-5.0',
@@ -23,6 +23,8 @@ def process_file(file_path, object_names, new_name_space):
         processed_lines.append(processed_line)
         if processed_line != line:
             changed = True
+        if object_names[0] in line or object_names[1] in line:
+            print(line.strip())
 
     # Write
     with open(file_path, 'w') as f:
