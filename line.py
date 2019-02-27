@@ -8,6 +8,26 @@ import re
 #     line_sub = re.sub(regex, f'{namespace}::{object_name}', line)
 # return line
 
+enum_classes = {
+    "PinholeCameraIntrinsicParameters",
+    "GeometryType",
+    "ColorToIntensityConversionType",
+    "FilterType",
+    "SearchType",
+    "TSDFVolumeColorType",
+    "SelectionMode",
+    "TextureInterpolationOption",
+    "PointColorOption",
+    "MeshShadeOption",
+    "MeshColorOption",
+    "ImageStretchOption",
+    "ColorMapOption",
+    "SectionPolygonType",
+    "TextColor",
+    "VerbosityLevel",
+    "TransformationEstimationType",
+}
+
 
 def process_line_one(line, object_name, namespace, verbose=False):
     if "TEST" in line:
