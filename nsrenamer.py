@@ -1,9 +1,22 @@
 import re
 from pathlib import Path
+import subprocess
+
+def format_file(file_path):
+    cmd = ['/usr/bin/clang-format-5.0',
+           '-i',
+           file_path]
+    subprocess.run(cmd)
 
 
 def process_file(file_path, object_names, new_name_space):
-    pass
+    print(f"Processing {file_path}")
+    with open(file_path, 'r') as f:
+        lines = f.readlines()
+    with open(file_path, 'w') as f:
+        for line in lines:
+            f.write(line)
+    format_file(file_path)
 
 
 def rename_namesapce(object_names, new_name_space, include_dirs, exclude_files):
@@ -18,7 +31,7 @@ def rename_namesapce(object_names, new_name_space, include_dirs, exclude_files):
 
 if __name__ == "__main__":
     root_dir = Path.home() / "repo" / "Open3D"
-    include_dirs = [root_dir / "src", root_dir / "examples", root_dir / "docs"]
+    include_dirs = [root_dir / "src", root_dir / "examples", root_dir / "docs" / "_static" / "C++"]
     exclude_files = {
         "/home/ylao/repo/Open3D/src/Open3D/Camera/PinholeCameraIntrinsic.cpp",
         "/home/ylao/repo/Open3D/src/Open3D/Camera/PinholeCameraIntrinsic.h",
