@@ -73,16 +73,23 @@ if __name__ == "__main__":
         root_dir / "docs" / "_static" / "C++",
     ]
 
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Camera")
-    exclude_files = glob_h_in_folder(Path("/home/ylao/repo/Open3D/src/Open3D/Camera"))
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Utility")
+    exclude_files = glob_h_in_folder(exclude_dir)
     print("[exclude_files]")
     pprint(exclude_files)
 
     object_names = [
-        "PinholeCameraIntrinsicParameters",
-        "PinholeCameraIntrinsic",
-        "PinholeCameraParameters",
-        "PinholeCameraTrajectory",
+        "Timer",
+        "ScopeTimer",
+        "FPSTimer",
+        "IJsonConvertible",
+        "SplitString",
+        "TransformVector6dToMatrix4d",
+        "TransformMatrix4dToVector6d",
+        "SolveLinearSystemPSD",
+        "SolveJacobianSystemAndObtainExtrinsicMatrix",
+        "SolveJacobianSystemAndObtainExtrinsicMatrixArray",
+        "ComputeJTJandJTr"
     ]
     print("[object_names]")
     pprint(object_names)
