@@ -42,7 +42,7 @@ def process_file(file_path, object_names, namespace):
         format_file(file_path)
 
 
-def renam_namespace(object_names, namespace, include_dirs, exclude_files):
+def rename_namespace(object_names, namespace, include_dirs, exclude_files):
     print("[exclude_files]")
     pprint(exclude_files)
     print("[object_names]")
@@ -108,4 +108,4 @@ if __name__ == "__main__":
 
     namespace = exclude_dir.name.lower()
     exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
-    renam_namespace(object_names, namespace, include_dirs, exclude_files)
+    rename_namespace(object_names, namespace, include_dirs, exclude_files)
