@@ -43,7 +43,7 @@ def process_file(file_path, object_names, namespace):
         format_file(file_path)
 
 
-def rename_namespace(object_names, namespace, include_dirs, exclude_files):
+def rename_namespace(object_names, namespace, include_dirs, exclude_files, reset_only=False):
     print("[exclude_files]")
     pprint(exclude_files)
     print("[object_names]")
@@ -60,6 +60,9 @@ def rename_namespace(object_names, namespace, include_dirs, exclude_files):
         for exclude_file in exclude_files:
             temp_exclude_file = Path(temp_dir + exclude_file)
             copyfile(temp_exclude_file, exclude_file)
+
+    if reset_only:
+        return
 
     target_files = []
     for include_dir in include_dirs:
@@ -139,4 +142,4 @@ if __name__ == "__main__":
 
     namespace = camel_to_snake(exclude_dir.name)
     exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
-    rename_namespace(object_names, namespace, include_dirs, exclude_files)
+    rename_namespace(object_names, namespace, include_dirs, exclude_files, reset_only=False)
