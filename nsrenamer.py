@@ -90,21 +90,30 @@ if __name__ == "__main__":
         root_dir / "docs" / "_static" / "C++",
     ]
 
-    # Config
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Utility")
+    # Config: camera
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Camera")
     object_names = [
-        "Timer",
-        "ScopeTimer",
-        "FPSTimer",
-        "IJsonConvertible",
-        "SplitString",
-        "TransformVector6dToMatrix4d",
-        "TransformMatrix4dToVector6d",
-        "SolveLinearSystemPSD",
-        "SolveJacobianSystemAndObtainExtrinsicMatrix",
-        "SolveJacobianSystemAndObtainExtrinsicMatrixArray",
-        "ComputeJTJandJTr"
+        "PinholeCameraIntrinsicParameters",
+        "PinholeCameraIntrinsic",
+        "PinholeCameraParameters",
+        "PinholeCameraTrajectory",
     ]
+
+    # Config: utility
+    # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Utility")
+    # object_names = [
+    #     "Timer",
+    #     "ScopeTimer",
+    #     "FPSTimer",
+    #     "IJsonConvertible",
+    #     "SplitString",
+    #     "TransformVector6dToMatrix4d",
+    #     "TransformMatrix4dToVector6d",
+    #     "SolveLinearSystemPSD",
+    #     "SolveJacobianSystemAndObtainExtrinsicMatrix",
+    #     "SolveJacobianSystemAndObtainExtrinsicMatrixArray",
+    #     "ComputeJTJandJTr",
+    # ]
 
     namespace = exclude_dir.name.lower()
     exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
