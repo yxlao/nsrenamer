@@ -13,6 +13,9 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if "TEST" in line:
         return line
 
+    if '//' == line[:2]:
+        return line
+
     if verbose:
         print(f"[init           ]: {line}")
 
