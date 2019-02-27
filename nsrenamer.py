@@ -73,11 +73,8 @@ if __name__ == "__main__":
         root_dir / "docs" / "_static" / "C++",
     ]
 
+    # Config
     exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Utility")
-    exclude_files = glob_h_in_folder(exclude_dir)
-    print("[exclude_files]")
-    pprint(exclude_files)
-
     object_names = [
         "Timer",
         "ScopeTimer",
@@ -91,10 +88,14 @@ if __name__ == "__main__":
         "SolveJacobianSystemAndObtainExtrinsicMatrixArray",
         "ComputeJTJandJTr"
     ]
+
+    # Print config
+    namespace = exclude_dir.name.lower()
+    exclude_files = glob_h_in_folder(exclude_dir)
+    print("[exclude_files]")
+    pprint(exclude_files)
     print("[object_names]")
     pprint(object_names)
-
-    namespace = exclude_dir.name.lower()
     print("[namespace]")
     print(namespace)
 
