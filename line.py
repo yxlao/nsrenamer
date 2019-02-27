@@ -91,6 +91,11 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if verbose:
         print(f"[duplicate ns   ]: {line}")
 
+    line = re.sub(rf"->{namespace}::{object_name}", f"->{object_name}", line)
+    line = re.sub(rf"\.{namespace}::{object_name}", f".{object_name}", line)
+    if verbose:
+        print(f"[pointer fix    ]: {line}")
+
     if verbose:
         print()
     return line
@@ -178,4 +183,10 @@ if __name__ == "__main__":
     before = "if (!ptr || ptr->GetGeometryType() != Geometry::GeometryType::PointCloud)"
     after = "if (!ptr || ptr->GetGeometryType() != Geometry::GeometryType::PointCloud)"
     if after != process_line_one(before, "PointCloud", "geometry"):
+        raise ValueError(f"Test filed for:\n {before}\n")
+
+    # Test 6 points
+    before = "source_ptr = polygon_volume->CropPointCloud(*source_ptr);"
+    after = "source_ptr = polygon_volume->CropPointCloud(*source_ptr);"
+    if after != process_line_one(before, "CropPointCloud", "geometry", verbose=True):
         raise ValueError(f"Test filed for:\n {before}\n")
