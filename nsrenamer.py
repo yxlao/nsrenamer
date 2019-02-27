@@ -4,6 +4,7 @@ from line import process_line
 import tempfile
 from shutil import copyfile
 from pprint import pprint
+import re
 
 
 def format_file(file_path):
@@ -82,6 +83,12 @@ def glob_h_in_folder(foder_path):
     return files
 
 
+def camel_to_snake(name):
+    # https://stackoverflow.com/a/1176023/1255535
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+
+
 if __name__ == "__main__":
     root_dir = Path.home() / "repo" / "Open3D"
     include_dirs = [
@@ -130,6 +137,6 @@ if __name__ == "__main__":
     #     "ComputeJTJandJTr",
     # ]
 
-    namespace = exclude_dir.name.lower()
+    namespace = camel_to_snake(exclude_dir.name)
     exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     rename_namespace(object_names, namespace, include_dirs, exclude_files)
