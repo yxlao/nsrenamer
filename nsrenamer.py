@@ -31,7 +31,8 @@ def process_file(file_path, object_names, namespace):
         processed_lines.append(processed_line)
         if processed_line != line:
             changed = True
-            print(f"[Changed] {file_path}\n{line.strip()}\n{processed_line.strip()}\n")
+            # print(f"[Changed] {file_path}\n{line.strip()}\n{processed_line.strip()}\n")
+    print(f"[Changed] {file_path}")
 
     # Write
     with open(file_path, "w") as f:
