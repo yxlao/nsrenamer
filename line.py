@@ -34,7 +34,6 @@ def process_line_one(line, object_name, namespace, verbose=False):
     line = re.sub(rf"TEST\({namespace}::{object_name}", f"TEST({object_name}", line)
     if verbose:
         print(f"[back_quote     ]: {line}")
-        print()
 
     line = re.sub(
         rf"class {namespace}::{object_name};",
@@ -43,8 +42,13 @@ def process_line_one(line, object_name, namespace, verbose=False):
     )
     if verbose:
         print(f"[forward_declare]: {line}")
-        print()
 
+    line = re.sub(rf"{object_name}::{namespace}::{object_name}", f"{object_name}::{object_name}", line)
+    if verbose:
+        print(f"[constructor    ]: {line}")
+
+    if verbose:
+        print()
     return line
 
 
@@ -87,5 +91,11 @@ if __name__ == "__main__":
     # Test 2: forward declaration
     before = "class PinholeCameraIntrinsic;"
     after = "namespace camera {class PinholeCameraIntrinsic;}"
+    if after != process_line_one(before, "PinholeCameraIntrinsic", "camera"):
+        raise ValueError(f"Test filed for:\n {before}\n")
+
+    # Test 3: constructor
+    before = "PinholeCameraIntrinsic::PinholeCameraIntrinsic"
+    after = "camera::PinholeCameraIntrinsic::PinholeCameraIntrinsic"
     if after != process_line_one(before, "PinholeCameraIntrinsic", "camera"):
         raise ValueError(f"Test filed for:\n {before}\n")
