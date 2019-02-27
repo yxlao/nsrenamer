@@ -291,5 +291,5 @@ if __name__ == "__main__":
     exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     object_names = list(set(object_names))
     rename_namespace(
-        object_names, namespace, include_dirs, exclude_files, reset_only=True
+        object_names, namespace, include_dirs, exclude_files, reset_only=False
     )
