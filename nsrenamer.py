@@ -93,4 +93,4 @@ if __name__ == "__main__":
             temp_exclude_file = Path(temp_dir + exclude_file)
             copyfile(temp_exclude_file, exclude_file)
 
-    # rename_namesapce(object_names, namespace, include_dirs, exclude_files)
+    rename_namesapce(object_names, namespace, include_dirs, exclude_files)
