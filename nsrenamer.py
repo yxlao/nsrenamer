@@ -114,6 +114,7 @@ if __name__ == "__main__":
     #     "PinholeCameraParameters",
     #     "PinholeCameraTrajectory",
     # ]
+    # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: color_map
     # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/ColorMap")
@@ -129,6 +130,7 @@ if __name__ == "__main__":
     #     "SetProxyIntensityForVertex",
     #     "SetGeometryColorAverage",
     # ]
+    # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: geometry
     # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Geometry")
@@ -203,6 +205,7 @@ if __name__ == "__main__":
     #     "VoxelGrid",
     #     "CreateSurfaceVoxelGridFromPointCloud",
     # ]
+    # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: Integration
     # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Integration")
@@ -212,6 +215,7 @@ if __name__ == "__main__":
     #     "TSDFVolume",
     #     "ScalableTSDFVolume",
     # ]
+    # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: Odometry
     # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Odometry")
@@ -223,6 +227,7 @@ if __name__ == "__main__":
     #     "OdometryOption",
     #     "ComputeRGBDOdometry",
     # ]
+    # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: Registration
     # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Registration")
@@ -260,52 +265,91 @@ if __name__ == "__main__":
     #     "TransformationEstimationPointToPoint",
     #     "TransformationEstimationPointToPlane",
     # ]
+    # namespace = camel_to_snake(exclude_dir.name)
 
-    # Config: utility
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Utility")
+    # # Config: utility
+    # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Utility")
+    # object_names = [
+    #     "Timer",
+    #     "ScopeTimer",
+    #     "FPSTimer",
+    #     "IJsonConvertible",
+    #     "hash_tuple",
+    #     "hash_eigen",
+    #     "filesystem",
+    #     "SplitString",
+    #     # Eigen
+    #     "Matrix4d_allocator",
+    #     "Matrix6d_allocator",
+    #     "Vector2d_allocator",
+    #     "Vector4i_allocator",
+    #     "Vector4d_allocator",
+    #     "Vector6d_allocator",
+    #     "TransformVector6dToMatrix4d",
+    #     "TransformMatrix4dToVector6d",
+    #     "SolveLinearSystemPSD",
+    #     "SolveJacobianSystemAndObtainExtrinsicMatrix",
+    #     "SolveJacobianSystemAndObtainExtrinsicMatrixArray",
+    #     "ComputeJTJandJTr",
+    #     # Console
+    #     "VerbosityLevel",
+    #     "SetVerbosityLevel",
+    #     "GetVerbosityLevel",
+    #     "PrintError",
+    #     "PrintWarning",
+    #     "PrintInfo",
+    #     "PrintDebug",
+    #     "PrintAlways",
+    #     "ResetConsoleProgress",
+    #     "AdvanceConsoleProgress",
+    #     "GetCurrentTimeStamp",
+    #     "GetProgramOptionAsString",
+    #     "GetProgramOptionAsInt",
+    #     "GetProgramOptionAsDouble",
+    #     "GetProgramOptionAsEigenVectorXd",
+    #     "ProgramOptionExists",
+    #     "ProgramOptionExistsAny",
+    # ]
+    # namespace = camel_to_snake(exclude_dir.name)
+
+    # Config: io/file_format
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/IO/FileFormat")
     object_names = [
-        "Timer",
-        "ScopeTimer",
-        "FPSTimer",
-        "IJsonConvertible",
-        "hash_tuple",
-        "hash_eigen",
-        "filesystem",
-        "SplitString",
-        # Eigen
-        "Matrix4d_allocator",
-        "Matrix6d_allocator",
-        "Vector2d_allocator",
-        "Vector4i_allocator",
-        "Vector4d_allocator",
-        "Vector6d_allocator",
-        "TransformVector6dToMatrix4d",
-        "TransformMatrix4dToVector6d",
-        "SolveLinearSystemPSD",
-        "SolveJacobianSystemAndObtainExtrinsicMatrix",
-        "SolveJacobianSystemAndObtainExtrinsicMatrixArray",
-        "ComputeJTJandJTr",
-        # Console
-        "VerbosityLevel",
-        "SetVerbosityLevel",
-        "GetVerbosityLevel",
-        "PrintError",
-        "PrintWarning",
-        "PrintInfo",
-        "PrintDebug",
-        "PrintAlways",
-        "ResetConsoleProgress",
-        "AdvanceConsoleProgress",
-        "GetCurrentTimeStamp",
-        "GetProgramOptionAsString",
-        "GetProgramOptionAsInt",
-        "GetProgramOptionAsDouble",
-        "GetProgramOptionAsEigenVectorXd",
-        "ProgramOptionExists",
-        "ProgramOptionExistsAny",
+        "ReadFeatureFromBIN",
+        "WriteFeatureToBIN",
+        "ReadImageFromJPG",
+        "WriteImageToJPG",
+        "ReadIJsonConvertibleFromJSON",
+        "WriteIJsonConvertibleToJSON",
+        "ReadIJsonConvertibleFromJSONString",
+        "WriteIJsonConvertibleToJSONString",
+        "ReadPinholeCameraTrajectoryFromLOG",
+        "WritePinholeCameraTrajectoryToLOG",
+        "ReadPointCloudFromPCD",
+        "WritePointCloudToPCD",
+        "ReadPointCloudFromPLY",
+        "WritePointCloudToPLY",
+        "ReadTriangleMeshFromPLY",
+        "WriteTriangleMeshToPLY",
+        "ReadLineSetFromPLY",
+        "WriteLineSetToPLY",
+        "ReadVoxelGridFromPLY",
+        "WriteVoxelGridToPLY",
+        "ReadImageFromPNG",
+        "WriteImageToPNG",
+        "ReadPointCloudFromPTS",
+        "WritePointCloudToPTS",
+        "ReadTriangleMeshFromSTL",
+        "WriteTriangleMeshToSTL",
+        "ReadPointCloudFromXYZ",
+        "WritePointCloudToXYZ",
+        "ReadPointCloudFromXYZN",
+        "WritePointCloudToXYZN",
+        "ReadPointCloudFromXYZRGB",
+        "WritePointCloudToXYZRGB",
     ]
+    namespace = "io::file_format"
 
-    namespace = camel_to_snake(exclude_dir.name)
     exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     object_names = list(set(object_names))
     rename_namespace(
