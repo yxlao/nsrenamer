@@ -91,6 +91,14 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if verbose:
         print(f"[enum class     ]: {line}")
 
+    line = re.sub(
+        rf"{namespace}::{namespace}::",
+        f"{namespace}::",
+        line,
+    )
+    if verbose:
+        print(f"[duplicate ns   ]: {line}")
+
     if verbose:
         print()
     return line
