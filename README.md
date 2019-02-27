@@ -1,0 +1,2 @@
+# nsrenamer
+Namespace renamer
