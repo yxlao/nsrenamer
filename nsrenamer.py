@@ -9,14 +9,33 @@ def format_file(file_path):
     subprocess.run(cmd)
 
 
+def process_line(line, object_names, new_name_space):
+    return line
+
+
 def process_file(file_path, object_names, new_name_space):
+    # Read
     print(f"Processing {file_path}")
     with open(file_path, 'r') as f:
         lines = f.readlines()
+
+    # Process
+    changed = False
+    processed_lines = []
+    for line in lines:
+        processed_line = process_line(line, object_names, new_name_space)
+        processed_lines.append(processed_line)
+        if processed_line != line:
+            changed = True
+
+    # Write
     with open(file_path, 'w') as f:
-        for line in lines:
-            f.write(line)
-    format_file(file_path)
+        for processed_line in processed_lines:
+            f.write(processed_line)
+
+    # Format
+    if changed:
+        format_file(file_path)
 
 
 def rename_namesapce(object_names, new_name_space, include_dirs, exclude_files):
