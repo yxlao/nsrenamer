@@ -114,6 +114,7 @@ if __name__ == "__main__":
     #     "PinholeCameraParameters",
     #     "PinholeCameraTrajectory",
     # ]
+    # exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: color_map
@@ -130,6 +131,7 @@ if __name__ == "__main__":
     #     "SetProxyIntensityForVertex",
     #     "SetGeometryColorAverage",
     # ]
+    # exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: geometry
@@ -205,6 +207,7 @@ if __name__ == "__main__":
     #     "VoxelGrid",
     #     "CreateSurfaceVoxelGridFromPointCloud",
     # ]
+    # exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: Integration
@@ -215,6 +218,7 @@ if __name__ == "__main__":
     #     "TSDFVolume",
     #     "ScalableTSDFVolume",
     # ]
+    # exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: Odometry
@@ -227,6 +231,7 @@ if __name__ == "__main__":
     #     "OdometryOption",
     #     "ComputeRGBDOdometry",
     # ]
+    # exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: Registration
@@ -265,6 +270,7 @@ if __name__ == "__main__":
     #     "TransformationEstimationPointToPoint",
     #     "TransformationEstimationPointToPlane",
     # ]
+    # exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     # namespace = camel_to_snake(exclude_dir.name)
 
     # # Config: utility
@@ -310,48 +316,78 @@ if __name__ == "__main__":
     #     "ProgramOptionExists",
     #     "ProgramOptionExistsAny",
     # ]
+    # exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
     # namespace = camel_to_snake(exclude_dir.name)
 
     # Config: io/file_format
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/IO/FileFormat")
-    object_names = [
-        "ReadFeatureFromBIN",
-        "WriteFeatureToBIN",
-        "ReadImageFromJPG",
-        "WriteImageToJPG",
-        "ReadIJsonConvertibleFromJSON",
-        "WriteIJsonConvertibleToJSON",
-        "ReadIJsonConvertibleFromJSONString",
-        "WriteIJsonConvertibleToJSONString",
-        "ReadPinholeCameraTrajectoryFromLOG",
-        "WritePinholeCameraTrajectoryToLOG",
-        "ReadPointCloudFromPCD",
-        "WritePointCloudToPCD",
-        "ReadPointCloudFromPLY",
-        "WritePointCloudToPLY",
-        "ReadTriangleMeshFromPLY",
-        "WriteTriangleMeshToPLY",
-        "ReadLineSetFromPLY",
-        "WriteLineSetToPLY",
-        "ReadVoxelGridFromPLY",
-        "WriteVoxelGridToPLY",
-        "ReadImageFromPNG",
-        "WriteImageToPNG",
-        "ReadPointCloudFromPTS",
-        "WritePointCloudToPTS",
-        "ReadTriangleMeshFromSTL",
-        "WriteTriangleMeshToSTL",
-        "ReadPointCloudFromXYZ",
-        "WritePointCloudToXYZ",
-        "ReadPointCloudFromXYZN",
-        "WritePointCloudToXYZN",
-        "ReadPointCloudFromXYZRGB",
-        "WritePointCloudToXYZRGB",
-    ]
-    namespace = "io::file_format"
-
-    exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
-    object_names = list(set(object_names))
+    object_names = list(
+        {
+            "ReadFeature",
+            "WriteFeature",
+            "ReadFeatureFromBIN",
+            "WriteFeatureToBIN",
+            "ReadIJsonConvertible",
+            "WriteIJsonConvertible",
+            "ReadIJsonConvertibleFromJSON",
+            "WriteIJsonConvertibleToJSON",
+            "ReadIJsonConvertibleFromJSONString",
+            "WriteIJsonConvertibleToJSONString",
+            "CreateImageFromFile",
+            "ReadImage",
+            "WriteImage",
+            "ReadImageFromPNG",
+            "WriteImageToPNG",
+            "ReadImageFromJPG",
+            "WriteImageToJPG",
+            "CreateImageWarpingFieldFromFile",
+            "ReadImageWarpingField",
+            "WriteImageWarpingField",
+            "CreateLineSetFromFile",
+            "ReadLineSet",
+            "WriteLineSet",
+            "ReadLineSetFromPLY",
+            "WriteLineSetToPLY",
+            "CreatePinholeCameraTrajectoryFromFile",
+            "ReadPinholeCameraTrajectory",
+            "WritePinholeCameraTrajectory",
+            "ReadPinholeCameraTrajectoryFromLOG",
+            "WritePinholeCameraTrajectoryToLOG",
+            "CreatePointCloudFromFile",
+            "ReadPointCloud",
+            "WritePointCloud",
+            "ReadPointCloudFromXYZ",
+            "WritePointCloudToXYZ",
+            "ReadPointCloudFromXYZN",
+            "WritePointCloudToXYZN",
+            "ReadPointCloudFromXYZRGB",
+            "WritePointCloudToXYZRGB",
+            "ReadPointCloudFromPLY",
+            "WritePointCloudToPLY",
+            "ReadPointCloudFromPCD",
+            "WritePointCloudToPCD",
+            "ReadPointCloudFromPTS",
+            "WritePointCloudToPTS",
+            "CreatePoseGraphFromFile",
+            "ReadPoseGraph",
+            "WritePoseGraph",
+            "CreateMeshFromFile",
+            "ReadTriangleMesh",
+            "WriteTriangleMesh",
+            "ReadTriangleMeshFromPLY",
+            "WriteTriangleMeshToPLY",
+            "ReadTriangleMeshFromSTL",
+            "WriteTriangleMeshToSTL",
+            "CreateVoxelGridFromFile",
+            "ReadVoxelGrid",
+            "WriteVoxelGrid",
+            "ReadVoxelGridFromPLY",
+            "WriteVoxelGridToPLY",
+        }
+    )
+    namespace = "io"
+    exclude_files = glob_cpp_and_h_in_folder(
+        Path("/home/ylao/repo/Open3D/src/Open3D/IO")
+    )
     rename_namespace(
         object_names, namespace, include_dirs, exclude_files, reset_only=False
     )
