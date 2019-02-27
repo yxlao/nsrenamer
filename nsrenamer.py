@@ -9,7 +9,7 @@ def format_file(file_path):
     subprocess.run(cmd)
 
 
-def process_file(file_path, object_names, new_name_space):
+def process_file(file_path, object_names, name_space):
     # Read
     # print(f"Processing {file_path}")
     with open(file_path, 'r') as f:
@@ -19,7 +19,7 @@ def process_file(file_path, object_names, new_name_space):
     changed = False
     processed_lines = []
     for line in lines:
-        processed_line = process_line(line, object_names, new_name_space)
+        processed_line = process_line(line, object_names, name_space)
         processed_lines.append(processed_line)
         if processed_line != line:
             changed = True
@@ -36,14 +36,14 @@ def process_file(file_path, object_names, new_name_space):
         format_file(file_path)
 
 
-def rename_namesapce(object_names, new_name_space, include_dirs, exclude_files):
+def rename_namesapce(object_names, name_space, include_dirs, exclude_files):
     target_files = []
     for include_dir in include_dirs:
         target_files.extend(list(include_dir.glob("**/*.cpp")))
         target_files.extend(list(include_dir.glob("**/*.h")))
     target_files = [f for f in target_files if str(f) not in exclude_files]
     for target_file in target_files:
-        process_file(target_file, object_names, new_name_space)
+        process_file(target_file, object_names, name_space)
 
 
 if __name__ == "__main__":
@@ -54,6 +54,6 @@ if __name__ == "__main__":
         "/home/ylao/repo/Open3D/src/Open3D/Camera/PinholeCameraIntrinsic.h",
     }
     object_names = ["PinholeCameraIntrinsic", "PinholeCameraIntrinsicParameters"]
-    new_name_space = "camera"
+    name_space = "camera"
 
-    rename_namesapce(object_names, new_name_space, include_dirs, exclude_files)
+    rename_namesapce(object_names, name_space, include_dirs, exclude_files)
