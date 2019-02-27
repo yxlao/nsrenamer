@@ -31,8 +31,8 @@ def process_line_one(line, object_name, namespace, verbose=False):
     if "#include" == line.strip()[:8]:
         return line
 
-    # if "PrintInfo" == line.strip()[:9]:
-    #     return line
+    if "PrintInfo" == line.strip()[:9] and object_name != "PrintInfo":
+        return line
 
     if verbose:
         print(f"[init           ]: {line}")
