@@ -43,6 +43,23 @@ def process_file(file_path, object_names, namespace):
 
 
 def rename_namesapce(object_names, namespace, include_dirs, exclude_files):
+    print("[exclude_files]")
+    pprint(exclude_files)
+    print("[object_names]")
+    pprint(object_names)
+    print("[namespace]")
+    print(namespace)
+
+    with tempfile.TemporaryDirectory() as temp_dir:
+        for exclude_file in exclude_files:
+            temp_exclude_file = Path(temp_dir + exclude_file)
+            temp_exclude_file.parent.mkdir(parents=True, exist_ok=True)
+            copyfile(exclude_file, temp_exclude_file)
+        git_reset(root_dir)
+        for exclude_file in exclude_files:
+            temp_exclude_file = Path(temp_dir + exclude_file)
+            copyfile(temp_exclude_file, exclude_file)
+
     target_files = []
     for include_dir in include_dirs:
         target_files.extend(list(include_dir.glob("**/*.cpp")))
@@ -89,24 +106,6 @@ if __name__ == "__main__":
         "ComputeJTJandJTr"
     ]
 
-    # Print config
     namespace = exclude_dir.name.lower()
     exclude_files = glob_cpp_and_h_in_folder(exclude_dir)
-    print("[exclude_files]")
-    pprint(exclude_files)
-    print("[object_names]")
-    pprint(object_names)
-    print("[namespace]")
-    print(namespace)
-
-    with tempfile.TemporaryDirectory() as temp_dir:
-        for exclude_file in exclude_files:
-            temp_exclude_file = Path(temp_dir + exclude_file)
-            temp_exclude_file.parent.mkdir(parents=True, exist_ok=True)
-            copyfile(exclude_file, temp_exclude_file)
-        git_reset(root_dir)
-        for exclude_file in exclude_files:
-            temp_exclude_file = Path(temp_dir + exclude_file)
-            copyfile(temp_exclude_file, exclude_file)
-
     rename_namesapce(object_names, namespace, include_dirs, exclude_files)
