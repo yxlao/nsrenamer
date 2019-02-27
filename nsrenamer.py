@@ -204,13 +204,24 @@ if __name__ == "__main__":
     #     "CreateSurfaceVoxelGridFromPointCloud",
     # ]
 
-    # Config: Integration
-    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Integration")
+    # # Config: Integration
+    # exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Integration")
+    # object_names = [
+    #     "UniformTSDFVolume",
+    #     "TSDFVolumeColorType",
+    #     "TSDFVolume",
+    #     "ScalableTSDFVolume",
+    # ]
+
+    # Config: Odometry
+    exclude_dir = Path("/home/ylao/repo/Open3D/src/Open3D/Odometry")
     object_names = [
-        "UniformTSDFVolume",
-        "TSDFVolumeColorType",
-        "TSDFVolume",
-        "ScalableTSDFVolume",
+        "CorrespondenceSetPixelWise",
+        "RGBDOdometryJacobian",
+        "RGBDOdometryJacobianFromColorTerm",
+        "RGBDOdometryJacobianFromHybridTerm",
+        "OdometryOption",
+        "ComputeRGBDOdometry",
     ]
 
     # Config: utility
