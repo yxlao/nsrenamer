@@ -72,7 +72,10 @@ if __name__ == "__main__":
     print("[exclude_files]")
     pprint(exclude_files)
 
-    object_names = ["PinholeCameraIntrinsic", "PinholeCameraIntrinsicParameters"]
+    object_names = ["PinholeCameraIntrinsicParameters",
+                    "PinholeCameraIntrinsic",
+                    "PinholeCameraParameters",
+                    "PinholeCameraTrajectory"]
     print("[object_names]")
     pprint(object_names)
 
